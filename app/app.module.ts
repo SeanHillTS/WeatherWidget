@@ -1,3 +1,4 @@
+import { WeatherComponent } from './weather-widget/component/weather.component';
 import { AppComponent } from './app.component';
 
 import {NgModule} from '@angular/core';
@@ -7,7 +8,7 @@ import {BrowserModule} from '@angular/platform-browser';
 @NgModule({
     imports:[ BrowserModule ],
     //Declarations are self-defined components in ypur app
-    declarations: [ AppComponent ],
+    declarations: [ AppComponent, WeatherComponent ],
     //Bootstrap to the root
     bootstrap: [AppComponent]
 })

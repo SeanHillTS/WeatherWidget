@@ -1,7 +1,12 @@
 import {Component} from '@angular/core';
 
  @Component({
+     moduleId : module.id,
      selector: 'my-app',
-     template: '<h1>Skeleton project(spooky)</h1>'
+     template: `<div class="container">
+                    <div class="col-xs-3">
+                        <weather-widget></weather-widget>
+                    </div>
+                </div>`
  })
  export class AppComponent{}
