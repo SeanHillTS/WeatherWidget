@@ -14,7 +14,9 @@ import { Component, OnInit } from '@angular/core';
 export class WeatherComponent implements OnInit {
     pos: Position;
     weatherData = new Weather(null, null, null, null, null);
-
+    currentSpeedUnit = 'kph';
+    currentTempUnit = 'farenheit';
+    currentLocation:String;
     constructor(private service: WeatherService) {
 
     }
@@ -26,7 +28,8 @@ export class WeatherComponent implements OnInit {
     getCurrentLocation() {
         this.service.getCurrentLocation().subscribe(pos => {
             this.pos = pos;
-            this.getCurrentWeather()
+            this.getCurrentWeather();
+            this.getLocationName();
         },
             err => {
                 console.error(err);
@@ -46,5 +49,37 @@ export class WeatherComponent implements OnInit {
             err => {
                 console.error(err);
             });
+    }
+
+    getLocationName(){
+        this.service.getLocationName(this.pos.coords.latitude, this.pos.coords.longitude)
+        .subscribe(location =>{
+            this.currentLocation = location["results"][1]["formatted_address"];
+        },
+        err => {
+            console.error(err);
+        });
+    }
+
+    toggleSpeedUnit(){
+        switch(this.currentSpeedUnit){
+            case "kph":
+            this.currentSpeedUnit = "mph";
+            break;
+            case "mph":
+            this.currentSpeedUnit = "kph";
+            break;
+        }
+    }
+
+    toggleTempUnit(){
+        switch(this.currentTempUnit){
+            case "farenheit":
+            this.currentTempUnit = "celsius";
+            break;
+            case "celsius":
+            this.currentTempUnit = "farenheit";
+            break;
+        }
     }
 }
