@@ -1,12 +1,19 @@
-import {Component} from '@angular/core';
+import {
+    Component
+} from '@angular/core';
 
- @Component({
-     moduleId : module.id,
-     selector: 'my-app',
-     template: `<div class="container">
+@Component({
+    moduleId: module.id,
+    selector: 'my-app',
+    template: `<div class="container">
                     <div class="col-xs-3">
                         <weather-widget></weather-widget>
                     </div>
-                </div>`
- })
- export class AppComponent{}
+                </div>`,
+    styles: [`
+    .container{
+        padding-top:5rem;
+    }
+    `]
+})
+export class AppComponent {}
