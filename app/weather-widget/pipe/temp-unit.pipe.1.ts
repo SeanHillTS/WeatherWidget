@@ -5,12 +5,12 @@ import{Pipe, PipeTransform} from '@angular/core';
 })
 
 export class TempUnitPipe implements PipeTransform{
-    transform(tempUnit: number, unitType: string){
-        if(unitType == 'celcius'){
-            tempUnit = (tempUnit -32) * 0.5556;
+    transform(temp: number, unitType: string){
+        if(unitType == 'celsius'){
+            temp = (temp -32) * 0.5556;
         }
 
-        return tempUnit;
+        return temp;
         }
     }
 }

@@ -7,10 +7,9 @@ import{Pipe, PipeTransform} from '@angular/core';
 export class SpeedUnitPipe implements PipeTransform{
     transform(speed: number, unitType: string){
         if(unitType == 'mph'){
-            speed *= 1.6;
+            speed *= 1.6; 
         }
 
-        return speed + unitType;
-        }
+        return Number(speed).toFixed(0) + unitType;
     }
 }

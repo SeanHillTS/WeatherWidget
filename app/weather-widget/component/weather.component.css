@@ -29,3 +29,7 @@ p {
     margin: .2rem;
     text-transform: uppercase;
 }
+
+#icon{
+    width:100%;
+}

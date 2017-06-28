@@ -1,6 +1,9 @@
 import { Weather } from './../model/weather';
 import { WeatherService } from './../service/weather.service';
 import { Component, OnInit } from '@angular/core';
+
+declare var Skycons: any;
+
 @Component({
     moduleId: module.id,
     selector: 'weather-widget',
@@ -15,8 +18,9 @@ export class WeatherComponent implements OnInit {
     pos: Position;
     weatherData = new Weather(null, null, null, null, null);
     currentSpeedUnit = 'kph';
-    currentTempUnit = 'farenheit';
+    currentTempUnit = 'fahrenheit';
     currentLocation:String;
+    icons = new Skycons({"color": "#FFF"});
     constructor(private service: WeatherService) {
 
     }
@@ -45,6 +49,7 @@ export class WeatherComponent implements OnInit {
                 this.weatherData.wind = weather["currently"]["windSpeed"];
                 this.weatherData.humidity = weather["currently"]["humidity"];
                 this.weatherData.icon = weather["currently"]["icon"];
+                this.setIcon();
             },
             err => {
                 console.error(err);
@@ -61,6 +66,11 @@ export class WeatherComponent implements OnInit {
         });
     }
 
+    toggleUnits(){
+        this.toggleSpeedUnit();
+        this.toggleTempUnit();
+    }
+
     toggleSpeedUnit(){
         switch(this.currentSpeedUnit){
             case "kph":
@@ -74,12 +84,17 @@ export class WeatherComponent implements OnInit {
 
     toggleTempUnit(){
         switch(this.currentTempUnit){
-            case "farenheit":
+            case "fahrenheit":
             this.currentTempUnit = "celsius";
             break;
             case "celsius":
-            this.currentTempUnit = "farenheit";
+            this.currentTempUnit = "fahrenheit";
             break;
         }
+    }
+
+    setIcon(){
+        this.icons.add("icon", this.weatherData.icon);
+        this.icons.play();
     }
 }
